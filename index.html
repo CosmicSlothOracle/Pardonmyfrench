@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pardon My French</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script>
+      tailwind.config = {
+        theme: {
+          extend: {
+            fontFamily: {
+              serif: ['Merriweather', 'serif'],
+              sans: ['Inter', 'sans-serif'],
+            },
+            colors: {
+              paper: '#fdfbf7',
+              ink: '#2d3748',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      /* Print specific styles for PDF generation via Print dialog if needed,
+         though we use jsPDF for direct download */
+      @media print {
+        .no-print { display: none !important; }
+        .print-only { display: block !important; }
+        body { background: white; }
+      }
+
+      /* Blur effect for anti-cheat focus loss */
+      .blur-content {
+        filter: blur(8px);
+        pointer-events: none;
+        user-select: none;
+      }
+
+      /* Watermark */
+      .watermark {
+        position: fixed;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%) rotate(-45deg);
+        font-size: 6rem;
+        opacity: 0.03;
+        pointer-events: none;
+        z-index: 50;
+        white-space: nowrap;
+        font-weight: 900;
+      }
+
+      /* Enhanced screenshot protection */
+      .anti-cheat-protected {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
+
+      .anti-cheat-protected input,
+      .anti-cheat-protected textarea {
+        -webkit-user-select: text !important;
+        -moz-user-select: text !important;
+        -ms-user-select: text !important;
+        user-select: text !important;
+      }
+
+      /* Prevent text selection on test content */
+      .anti-cheat-protected .test-content {
+        -webkit-user-select: none !important;
+        -moz-user-select: none !important;
+        -ms-user-select: none !important;
+        user-select: none !important;
+      }
+
+      /* Disable drag and drop */
+      .anti-cheat-protected img,
+      .anti-cheat-protected a {
+        -webkit-user-drag: none;
+        -khtml-user-drag: none;
+        -moz-user-drag: none;
+        -o-user-drag: none;
+        user-drag: none;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react/": "https://esm.sh/react@^19.2.3/",
+    "react": "https://esm.sh/react@^19.2.3",
+    "react-dom/": "https://esm.sh/react-dom@^19.2.3/",
+    "jspdf": "https://esm.sh/jspdf@^4.0.0"
+  }
+}
+</script>
+<link rel="stylesheet" href="/index.css">
+</head>
+  <body class="bg-gray-100 text-ink antialiased selection:bg-blue-100 selection:text-blue-900">
+    <div id="root"></div>
+  <script type="module" src="/index.tsx"></script>
+</body>
+</html>
